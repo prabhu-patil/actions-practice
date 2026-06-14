@@ -56,5 +56,5 @@ jobs:
        run: echo "This runs only on the main branch."
        
      - name: Runs even if something failed
-       if: failure() || success()
+       if: failure()
        run: echo "The previous steps failed."  
