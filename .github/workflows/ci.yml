@@ -50,3 +50,11 @@ jobs:
      - run: echo "Building the project..." # replace with actual build command
      
      - run : echo "Build successfully!"
+     
+     - name: Only on main branch
+       if: github.ref == 'refs/heads/main'
+       run: echo "This runs only on the main branch."
+       
+     - name: Runs even if something failed
+       if: failure() || success()
+       run: echo "The previous steps failed."  
