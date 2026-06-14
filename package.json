@@ -1,0 +1,15 @@
+{
+  "name": "actions-practice",
+  "version": "1.0.0",
+  "description": "A small web app to practise GitHub Actions CI/CD",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test",
+    "lint": "node --check src/server.js && node --check src/utils.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
