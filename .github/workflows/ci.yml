@@ -19,4 +19,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
      - run: npm ci                      # 'ci' = clean install from package-lock.json
      - run: npm test
-      
+     - name: use a secret
+       env:
+        TOKEN: ${{ secrets.MY_SECRET }}
+       run: echo " secret length is ${#TOKEN}"
