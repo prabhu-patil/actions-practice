@@ -1,9 +1,13 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { add, isPalindrome, greet } from "../src/utils.js";
+import { add, multiply, isPalindrome, greet } from "../src/utils.js";
 
 test("add: sums two numbers", () => {
   assert.equal(add(2, 3), 5);
+});
+
+test("multiply: multiplies two numbers", () => {
+  assert.equal(multiply(4, 5), 20);
 });
 
 test("isPalindrome: detects a palindrome", () => {
