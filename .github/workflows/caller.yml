@@ -1,0 +1,11 @@
+name: Caller
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  call-the-tests:
+    uses: ./.github/workflows/reusable-tests.yml   # call it by path
+    with:
+      node-version: '20'
