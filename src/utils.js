@@ -4,6 +4,10 @@ export function add(a, b) {
   return a + b;
 }
 
+export function multiply(a, b) {
+  return a * b;
+}
+
 export function isPalindrome(text) {
   const clean = String(text).toLowerCase().replace(/[^a-z0-9]/g, "");
   return clean === [...clean].reverse().join("");
