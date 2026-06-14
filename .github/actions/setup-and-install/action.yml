@@ -1,0 +1,19 @@
+name: 'Setup and Install'
+description: 'Checkout, set up Node, and install deps'
+
+inputs:
+  node-version:
+    description: 'Node version to use'
+    required: false
+    default: '20'
+
+runs:
+  using: 'composite'        # this is what makes it a composite action
+  steps:
+    - uses: actions/checkout@v5
+    - uses: actions/setup-node@v5
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+    - run: npm ci
+      shell: bash           # composite run-steps MUST declare a shell

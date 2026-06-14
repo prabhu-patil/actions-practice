@@ -1,0 +1,15 @@
+name: Use Composite
+
+on:
+    push:
+      branches: [main]
+
+jobs:
+    test:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v5       # needed first, so the action file exists on the runner
+        - uses: ./.github/actions/setup-and-install   # YOUR action, by folder path
+          with:
+            node-version: '20'
+        - run: npm test
