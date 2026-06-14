@@ -1,7 +1,7 @@
 // Small pure functions — easy to unit-test in CI.
 
 export function add(a, b) {
-  return a - b;
+  return a + b;
 }
 
 export function isPalindrome(text) {
