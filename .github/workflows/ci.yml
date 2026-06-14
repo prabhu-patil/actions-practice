@@ -35,4 +35,18 @@ jobs:
        uses: actions/upload-artifact@v4
        with:
         name: report-node-${{ matrix.node-version }}
-        path: report.txt     
+        path: report.txt
+        
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+     - uses: actions/checkout@v5
+     - uses: actions/setup-node@v5
+       with:
+        node-version: '20'
+        cache: 'npm'
+     - run: npm ci
+     - run: echo "Building the project..." # replace with actual build command
+     
+     - run : echo "Build successfully!"
