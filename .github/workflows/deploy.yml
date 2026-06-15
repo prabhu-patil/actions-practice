@@ -1,0 +1,22 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ./.github/actions/setup-and-install
+      - run: npm test
+
+  deploy:
+    needs: test                 # only deploy if tests pass
+    runs-on: ubuntu-latest
+    environment: production     # ← links this job to the protected environment
+    steps:
+      - run: echo "Deploying to production... 🚀"
+      - run: echo "Deploy complete ✅"
