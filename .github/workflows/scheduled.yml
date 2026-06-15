@@ -1,0 +1,15 @@
+name: Scheduled and Manual
+on:
+  schedule:
+    - cron: '0 9 * * *'        # every day at 09:00 UTC
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Who to greet'
+        required: true
+        default: 'World'
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello, ${{ inputs.name }}! This ran on schedule or manually."
