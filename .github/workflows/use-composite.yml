@@ -1,8 +1,6 @@
 name: Use Composite
 
-on:
-    push:
-      branches: [main]
+on: workflow_dispatch     # manual only — click "Run workflow" in the Actions tab
 
 jobs:
     test:
