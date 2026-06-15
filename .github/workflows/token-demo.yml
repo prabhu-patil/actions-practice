@@ -1,0 +1,15 @@
+name: Token Demo
+
+on: workflow_dispatch
+
+permissions:
+    contents: read
+
+jobs:
+  whoami:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call GitHub API with the token
+        run: |
+          curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${{ github.repository }} | head -20
