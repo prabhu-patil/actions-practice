@@ -1,0 +1,34 @@
+name: DB Test
+
+on: workflow_dispatch
+
+jobs:
+    test-with-db:
+      runs-on: ubuntu-latest
+
+      services:                          # sidecar containers for this job
+        postgres:                        # name (you pick it)
+          image: postgres:16             # the Docker image to run
+          env:                           # config the Postgres container
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: postgres
+          ports:
+            - 5432:5432                  # expose DB port to the runner
+          options: >-                    # wait until the DB is actually ready
+            --health-cmd "pg_isready -U postgres"
+            --health-interval 5s
+            --health-timeout 5s
+            --health-retries 5
+
+      steps:
+        - uses: actions/checkout@v5
+        - uses: ./.github/actions/setup-and-install
+        - name: Run DB check
+          env:                           # tell our script how to reach the DB
+            DB_HOST: localhost
+            DB_PORT: 5432
+            DB_USER: postgres
+            DB_PASSWORD: postgres
+            DB_NAME: postgres
+          run: node src/db-check.js
