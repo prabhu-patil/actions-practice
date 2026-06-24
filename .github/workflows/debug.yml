@@ -1,0 +1,22 @@
+name: Debug
+
+on: workflow_dispatch
+
+jobs:
+    debug:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v5
+
+        - name: Show context
+          run: |
+            echo "Actor: ${{ github.actor }}"
+            echo "Event: ${{ github.event_name }}"
+            echo "Ref: ${{ github.ref }}"
+            echo "SHA: ${{ github.sha }}"
+
+        - name: Step debug example
+          run: echo "::debug::This only shows when debug logging is ON"
+
+        - name: Write to the run summary
+          run: echo "### Build report 📋" >> $GITHUB_STEP_SUMMARY
