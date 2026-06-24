@@ -1,0 +1,24 @@
+name: 'Setup and Install'
+description: 'Checks out code, sets up Node, and runs npm ci'
+author: 'prabhu-patil'
+
+branding:
+  icon: 'package'      # icon from the Feather icon set
+  color: 'blue'        # tile color in the Marketplace
+
+inputs:
+  node-version:
+    description: 'Node.js version to use'
+    required: false
+    default: '20'
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v5
+    - uses: actions/setup-node@v5
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+    - run: npm ci
+      shell: bash
